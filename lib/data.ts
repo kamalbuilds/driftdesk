@@ -144,14 +144,21 @@ export async function resolveActiveFixtureId(): Promise<number> {
   return SAMPLE_FIXTURE_ID;
 }
 
+const KNOWN_FIXTURES: Record<number, { Participant1: string; Participant2: string; Competition: string }> = {
+  18257739: { Participant1: "Spain", Participant2: "Argentina", Competition: "World Cup" },
+  18222446: { Participant1: "Argentina", Participant2: "Switzerland", Competition: "International Football" },
+};
+
 export async function findFixture(fixtureId = 18222446): Promise<Fixture> {
   const { fixtures } = await loadFixtures();
   const found = fixtures.find((fixture) => fixture.FixtureId === fixtureId);
   if (found) return found;
+  const known = KNOWN_FIXTURES[fixtureId];
+  if (known) return { FixtureId: fixtureId, ...known };
   return {
     FixtureId: fixtureId,
-    Participant1: "Argentina",
-    Participant2: "Switzerland",
-    Competition: "World Cup",
+    Participant1: "Team A",
+    Participant2: "Team B",
+    Competition: "International Football",
   };
 }
