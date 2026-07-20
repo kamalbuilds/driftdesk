@@ -114,14 +114,20 @@ export async function resolveActiveFixtureId(): Promise<number> {
     try {
       const client = new TxLineClient({ network: "devnet", jwt: creds.jwt, apiToken: creds.apiToken });
       const fixtures = await client.fixturesSnapshot();
+      // Known score-rich fixtures (finished matches roll out of the forward
+      // snapshot window, so probe them explicitly to keep the demo strong).
+      const KNOWN_RICH = [18257739, 18222446];
+      const candidateIds = Array.from(new Set([...KNOWN_RICH, ...fixtures.slice(0, 12).map((f) => f.FixtureId)]));
+      const competitionById = new Map(fixtures.map((f) => [f.FixtureId, (f.Competition ?? "").toLowerCase()]));
       const scored = await Promise.all(
-        fixtures.slice(0, 12).map(async (fixture) => {
+        candidateIds.map(async (id) => {
           try {
-            const scores = await client.scoreSnapshot(fixture.FixtureId);
-            const weight = (fixture.Competition ?? "").toLowerCase().includes("world cup") ? 1000 : 0;
-            return { id: fixture.FixtureId, rank: scores.length + weight };
+            const scores = await client.scoreSnapshot(id);
+            const isWorldCup = (competitionById.get(id) ?? "").includes("world cup") || id === 18257739;
+            const weight = isWorldCup ? 1000 : 0;
+            return { id, rank: scores.length ? scores.length + weight : 0 };
           } catch {
-            return { id: fixture.FixtureId, rank: 0 };
+            return { id, rank: 0 };
           }
         }),
       );
