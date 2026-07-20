@@ -1,0 +1,5 @@
+[
+  {"FixtureId":18222446,"MessageId":"sample-1","Ts":1783818000000,"Bookmaker":"Synthetic","SuperOddsType":"MatchWinner","MarketPeriod":"FullTime","InRunning":true,"PriceNames":["Team A","Draw","Team B"],"Prices":[2000,3200,4200],"Pct":["50","30","20"]},
+  {"FixtureId":18222446,"MessageId":"sample-2","Ts":1783818300000,"Bookmaker":"Synthetic","SuperOddsType":"MatchWinner","MarketPeriod":"FullTime","InRunning":true,"PriceNames":["Team A","Draw","Team B"],"Prices":[1600,3800,6000],"Pct":["63","24","13"]},
+  {"FixtureId":18222446,"MessageId":"sample-3","Ts":1783818600000,"Bookmaker":"Synthetic","SuperOddsType":"MatchWinner","MarketPeriod":"FullTime","InRunning":true,"PriceNames":["Team A","Draw","Team B"],"Prices":[1400,4200,7000],"Pct":["70","20","10"]}
+]

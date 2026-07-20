@@ -1,0 +1,5 @@
+[
+  {"FixtureId":18222446,"Seq":1,"Ts":1783818000000,"Action":"kickoff","Clock":{"Running":true,"Seconds":0},"Score":{"Participant1":{"Total":{"Goals":0}},"Participant2":{"Total":{"Goals":0}}}},
+  {"FixtureId":18222446,"Seq":20,"Ts":1783821600000,"Action":"goal","Clock":{"Running":true,"Seconds":3600},"Score":{"Participant1":{"Total":{"Goals":1}},"Participant2":{"Total":{"Goals":0}}},"Stats":{"1":1,"2":0}},
+  {"FixtureId":18222446,"Seq":30,"Ts":1783825200000,"Action":"game_finalised","StatusId":100,"Period":100,"Clock":{"Running":false,"Seconds":7200},"Score":{"Participant1":{"Total":{"Goals":1,"RedCards":0}},"Participant2":{"Total":{"Goals":0,"RedCards":1}}},"Stats":{"1":1,"2":0,"5":0,"6":1}}
+]
